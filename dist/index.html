@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather app</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="main-logo">
+      <span class="name">Weather</span>
+    </div>
+    <div class="search">
+      <form class="search-bar">
+        <input type="search" class="search-bar-input" data-search-bar-input placeholder="Enter a city">
+        <button id="searchIconBtn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
+    <button id="unitConversionBtn">
+      <span class="active" data-units-si>&deg;C</span> / <span data-units-imperial>&deg;F</span>
+    </button>
+  </header>
+  <main class="main blurred">
+    <div class="current-weather">
+      <div class="weather-general-section">
+        <div class="weather-info weather-info--city" data-general-city></div>
+        <div class="weather-info weather-info--date" data-general-date></div>
+        <div class="weather-info weather-info--time" data-general-time></div>
+      </div>
+      <div class="weather-highlights-section">
+        <div class="weather-info weather-info--temperature" data-current-temperature></div>
+        <div class="weather-info weather-info--condition-text" data-current-condition-text></div>
+        <div class="weather-info weather-info--condition-icon" data-current-condition-icon></div>
+        <div class="weather-info weather-info--max-min-temperature">
+          <span data-current-max_temp></span>
+          <span data-current-min_temp></span>
+        </div>
+      </div>
+      <div class="weather-details-section">
+        <div class="weather-info weather-info--feels-like">
+          <div class="weather-info__icon"></div>
+          <div class="weather-info__label">Feels Like</div>
+          <div class="weather-info__data" data-current-feels-like></div>
+        </div>
+        <div class="weather-info weather-info--humidity">
+          <div class="weather-info__icon"></div>
+          <div class="weather-info__label">Humidity</div>
+          <div class="weather-info__data" data-current-humidity></div>
+        </div>
+        <div class="weather-info weather-info--precipitation">
+          <div class="weather-info__icon"></div>
+          <div class="weather-info__label">Precipitation</div>
+          <div class="weather-info__data" data-current-precipitation></div>
+        </div>
+        <div class="weather-info weather-info--wind-speed">
+          <div class="weather-info__icon"></div>
+          <div class="weather-info__label">Wind Speed</div>
+          <div class="weather-info__data" data-current-wind-speed></div>
+        </div>
+      </div>
+    </div>
+    <div class="weather-forecast">
+      <div class="forecast forecast--daily">
+        <span class="forecast__label">Forecast for the next 2 days :</span>
+        <div class="card-container card-container--daily-forecast" data-forecastdaily></div>
+      </div>
+      <div class="forecast forecast--hourly">
+        <span class="forecast__label">Forecast for the rest of the day :</span>
+        <div class="card-container card-container--hourly-forecast" data-forecasthourly></div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <span class="credits">
+      Brought to you by : <a href="https://github.com/rvarad" target="_blank">rvarad</a> | <a href="http://"
+        target="_blank">Source</a>
+    </span>
+    <span class="powered-by">
+      Powered By <a href="http://www.weatherapi.com/" target="_blank">Weather API</a>
+    </span>
+  </footer>
+  <div class="templates">
+    <template id="forecastDailyTemplate">
+      <div class="forecast-card forecast--daily__card">
+        <div class="forecast--daily__card__day" data-forecastdaily-weekday></div>
+        <div class="forecast--daily__card__condition-text" data-forecastdaily-condition-text></div>
+        <div class="forecast--daily__card__condition-icon" data-forecastdaily-condition-icon></div>
+        <div class="forecast--daily__card__average-temperature" data-forecastdaily-average-temperature></div>
+        <div class="forecast--daily__card__max-min-temperature">
+          <span data-forecastdaily-max_temp></span>
+          <span data-forecastdaily-min_temp></span>
+        </div>
+      </div>
+    </template>
+    <template id="forecastHourlyTemplate">
+      <div class="forecast-card forecast--hourly__card">
+        <div class="forecast--hourly__card__time" data-forecasthourly-time></div>
+        <div class="forecast--hourly__card__condition-text" data-forecasthourly-condition-text></div>
+        <div class="forecast--hourly__card__condition-icon" data-forecasthourly-condition-icon></div>
+        <div class="forecast--hourly__card__temperature" data-forecasthourly-temperature></div>
+        <div class="forecast--hourly__card__precipitation" data-forecasthourly-precipitation></div>
+      </div>
+    </template>
+  </div>
+</body>
+
+</html>
