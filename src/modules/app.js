@@ -85,6 +85,5 @@ export default function initialise() {
   setInterval(() => {
     console.log(tz);
     setValue('general-time', continousTime(tz))
-    continousTime(tz)
   }, 60000);
 }

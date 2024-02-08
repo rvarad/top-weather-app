@@ -10,7 +10,7 @@ export async function getWeather(location, units) {
     console.log(parsedWeatherObj(weatherData))
     return parsedWeatherObj(weatherData, units)
   } catch (err) {
-    console.log("error getting weather", err.response.data.error)
+    console.log("error getting weather", err.response.data.error.code)
     switch (err.response.data.error.code) {
       case 1003:
         alert("Please enter a city")
