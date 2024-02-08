@@ -57,4 +57,17 @@ function continousTime(tz) {
   return formatTime(time)
 }
 
-export { conditionObj, getWeekDay, formatDate, formatTime, continousTime }
+function unitConversion(units) {
+  if (units === 'si') {
+    document.querySelector('[data-units-si]').classList.remove('active')
+    document.querySelector('[data-units-imperial]').classList.add('active')
+    units = 'imperial'
+  } else {
+    document.querySelector('[data-units-imperial]').classList.remove('active')
+    document.querySelector('[data-units-si]').classList.add('active')
+    units = 'si'
+  }
+  return units
+}
+
+export { conditionObj, getWeekDay, formatDate, formatTime, continousTime, unitConversion }

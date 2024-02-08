@@ -1,4 +1,4 @@
-import { continousTime } from "./utils"
+import { continousTime, unitConversion } from "./utils"
 import { getWeather } from "./weather"
 
 function renderWeather({ general, current, forecastDaily, forecastHourly }, units) {
@@ -80,6 +80,14 @@ export default function initialise() {
       tz = res.general.tz
     })
     searchBarInput.value = ""
+  })
+
+  document.getElementById('unitConversionBtn').addEventListener('click', () => {
+    units = unitConversion(units)
+    getWeather(location, units).then(res => {
+      renderWeather(res, units)
+      tz = res.general.tz
+    })
   })
 
   setInterval(() => {
