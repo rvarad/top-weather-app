@@ -3,6 +3,7 @@ import { getWeather } from "./weather"
 
 function renderWeather({ general, current, forecastDaily, forecastHourly }, units) {
   renderGeneralInfo(general)
+  setTheme(current.is_day)
   renderCurrentWeather(current, units)
   renderDailyWeather(forecastDaily, units)
   renderHourlyWeather(forecastHourly, units)
@@ -60,6 +61,16 @@ function renderIcon(selector, value, parent = document) {
 
 function setValue(selector, value, parent = document) {
   parent.querySelector(`[data-${selector}]`).textContent = value
+}
+
+function setTheme(code) { // 1 is day, 0 is night
+  if (code === 1) {
+    document.querySelector('body').dataset.theme = 'light'
+    document.querySelector('.main-logo .logo').setAttribute('src', './icons/clear-day.svg')
+  } else {
+    document.querySelector('body').dataset.theme = 'dark'
+    document.querySelector('.main-logo .logo').setAttribute('src', './icons/moon-full.svg')
+  }
 }
 
 export default function initialise() {

@@ -45,7 +45,7 @@ function parsedWeatherObj(data, units) {
 
 function parsedCurrentWeather(data, units) { // data = weatherData.current
   return {
-    is_day: data.is_day,
+    is_day: data.current.is_day,
     temperature: units === 'si' ? data.current.temp_c : data.current.temp_f,
     max_temp: units === 'si' ? data.forecast.forecastday[0].day.maxtemp_c : data.forecast.forecastday[0].day.maxtemp_f,
     min_temp: units === 'si' ? data.forecast.forecastday[0].day.mintemp_c : data.forecast.forecastday[0].day.mintemp_f,
