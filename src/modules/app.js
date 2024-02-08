@@ -1,3 +1,4 @@
+import { continousTime } from "./utils"
 import { getWeather } from "./weather"
 
 function renderWeather({ general, current, forecastDaily, forecastHourly }, units) {
@@ -66,6 +67,7 @@ export default function initialise() {
   searchBarInput.value = ""
   let location = 'london'
   let units = 'si'
+  let tz = 'Europe/London'
   getWeather(location, units).then(res => renderWeather(res, units))
 
   document.querySelector('[data-search-btn]').addEventListener('click', () => {
@@ -73,7 +75,16 @@ export default function initialise() {
     location = searchBarInput.value
     // console.log(location)
     // parsedWeatherObj('new york', 'si').then(res => console.log(res))
-    getWeather(location, units).then(res => { renderWeather(res, units) })
+    getWeather(location, units).then(res => {
+      renderWeather(res, units)
+      tz = res.general.tz
+    })
     searchBarInput.value = ""
   })
+
+  setInterval(() => {
+    console.log(tz);
+    setValue('general-time', continousTime(tz))
+    continousTime(tz)
+  }, 60000);
 }

@@ -52,4 +52,9 @@ function formatTime(time, interval) {
   }
 }
 
-export { conditionObj, getWeekDay, formatDate, formatTime }
+function continousTime(tz) {
+  let time = new Date().toLocaleString("en-US", { timeZone: tz })
+  return formatTime(time)
+}
+
+export { conditionObj, getWeekDay, formatDate, formatTime, continousTime }
