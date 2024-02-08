@@ -17,6 +17,7 @@ function renderGeneralInfo(data) {
 function renderCurrentWeather(data, units) {
   setValue('current-condition-text', data.condition.text)
   setValue('current-temperature', units === 'si' ? `${data.temperature}°C` : `${data.temperature}°F`)
+  renderIcon('current-condition-icon', data.condition.iconSrc)
   setValue('current-max_temp', units === 'si' ? `H: ${data.max_temp}°C` : `H: ${data.max_temp}°F`)
   setValue('current-min_temp', units === 'si' ? `L: ${data.min_temp}°C` : `L: ${data.min_temp}°F`)
   setValue('current-feels-like', units === 'si' ? `${data.feels_like}°C` : `${data.feels_like}°F`)
@@ -31,6 +32,7 @@ function renderDailyWeather(data, units) {
     const element = document.getElementById('forecastDailyTemplate').content.cloneNode(true)
     setValue('forecastDaily-weekday', day.weekday, element)
     setValue('forecastDaily-condition-text', day.condition.text, element)
+    renderIcon('forecastDaily-condition-icon', day.condition.iconSrc, element)
     setValue('forecastDaily-average-temperature', units === 'si' ? `${day.average_temperature}°C` : `${day.average_temperature}°F`, element)
     setValue('forecastDaily-max_temp', units === 'si' ? `H : ${day.max_temp}°C` : `H : ${day.max_temp}°F`, element)
     setValue('forecastDaily-min_temp', units === 'si' ? `L : ${day.min_temp}°C` : `L : ${day.min_temp}°F`, element)
@@ -44,10 +46,15 @@ function renderHourlyWeather(data, units) {
     const element = document.getElementById('forecastHourlyTemplate').content.cloneNode(true)
     setValue('forecastHourly-time', hour.time, element)
     setValue('forecastHourly-condition-text', hour.condition.text, element)
+    renderIcon('forecastHourly-condition-icon', hour.condition.iconSrc, element)
     setValue('forecastHourly-temperature', units === 'si' ? `${hour.temperature}°C` : `${hour.temperature}°F`, element)
     setValue('forecastHourly-precipitation', units === 'si' ? `Precip: ${hour.precipitation}mm` : `Precip: ${hour.precipitation}in`, element)
     document.querySelector('[data-forecastHourly]').appendChild(element)
   })
+}
+
+function renderIcon(selector, value, parent = document) {
+  parent.querySelector(`[data-${selector}]`).innerHTML = `<img src="${value}" value="" >`
 }
 
 function setValue(selector, value, parent = document) {
