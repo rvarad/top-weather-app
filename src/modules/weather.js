@@ -7,6 +7,7 @@ export async function getWeather(location, units) {
     const weatherData = response.data
 
     console.log(weatherData)
+    console.log(parsedWeatherObj(weatherData))
     return parsedWeatherObj(weatherData, units)
   } catch (err) {
     console.log("error getting weather", err.response.data.error)
