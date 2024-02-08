@@ -8,9 +8,22 @@ export async function getWeather(location, units) {
 
     console.log(weatherData)
     return parsedWeatherObj(weatherData, units)
-  } catch (error) {
-    console.log(error)
-    return error
+  } catch (err) {
+    console.log("error getting weather", err.response.data.error)
+    switch (err.response.data.error.code) {
+      case 1003:
+        alert("Please enter a city")
+        break;
+
+      case 1006:
+        alert("Please enter a valid city")
+        break;
+
+      default:
+        alert("Error getting weather")
+        break;
+    }
+    return err
   }
 }
 
